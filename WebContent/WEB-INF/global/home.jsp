@@ -8,3 +8,5 @@
 	<a href="${context}/WEB-INF/member/service/login.jsp">로그인 하러 가기</a><br />
 	<a href="${context}/WEB-INF/global/main.jsp">글로벌 메인</a> --%>
 </div>
+<jsp:include page="footer.jsp"/>
+<jsp:include page="end.jsp"/>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%	String ctp = application.getContextPath();%>
 <div id="nav">
 	<ul>
 		<li><a href="${context}/member/main.jsp">회원관리</a></li>
