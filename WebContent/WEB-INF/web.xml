@@ -10,8 +10,8 @@
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>default</servlet-name>
-  	<url-pattern>/resources/*</url-pattern>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/resources/*</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>encodingFilter</filter-name>
@@ -32,20 +32,24 @@
     </jsp-property-group>
   </jsp-config>
   <error-page>
+    <error-code>200</error-code>
+    <location>/WEB-INF/error/error200.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>307</error-code>
+    <location>/WEB-INF/error/error307.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>401</error-code>
+    <location>/WEB-INF/error/error401.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>503</error-code>
+    <location>/WEB-INF/error/error503.jsp</location>
+  </error-page>
+  <error-page>
     <error-code>404</error-code>
     <location>/WEB-INF/error/error404.jsp</location>
-  </error-page>
-  <error-page>
-    <error-code>500</error-code>
-    <location>/WEB-INF/error/error500.jsp</location>
-  </error-page>
-  <error-page>
-    <error-code>500</error-code>
-    <location>/WEB-INF/error/error500.jsp</location>
-  </error-page>
-  <error-page>
-    <error-code>500</error-code>
-    <location>/WEB-INF/error/error500.jsp</location>
   </error-page>
   <error-page>
     <error-code>500</error-code>

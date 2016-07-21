@@ -12,20 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class HomeController
  */
-@WebServlet({"/home.do"})
+@WebServlet({"/intro.do"})
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String servletPath = request.getServletPath();
-		String path =  servletPath.split("/")[1];
-		String view =  path.substring(0, path.indexOf("."));
-		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/global/"+view+".jsp");
-		dis.forward(request, response);
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/global/"+request.getParameter("page")+".jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
 }
