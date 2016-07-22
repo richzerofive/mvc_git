@@ -10,66 +10,58 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import global.Command;
+import global.DispatcherServlet;
 import global.Seperator;
 
 /**
  * Servlet implementation class MemberController
  */
-@WebServlet({"/member/main.do"})
+@WebServlet({"/member.do"})
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      private String directory,view; 
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("커멘드방식으로 전환"+request.getParameter("cmd"));
-		Seperator.init(request, response);
-		String page = request.getParameter("page");
-		String cmd = request.getParameter("cmd");
-		if (!page.equals("")) {
-			request.getRequestDispatcher("/WEB-INF/member/"+page+".jsp")
-			.forward(request, response);
-		} 
+		System.out.println("===member 컨트롤러진입=====");
 		MemberService service = MemberServiceImpl.getInstance();
+		MemberBean bean =  new MemberBean();
+		Seperator.init(request, response);
 		switch (Seperator.command.getAction()) {
-		case "main":
-		/*	this.dispatch(request, response, Seperator.command.getDirectory()+"/"+Seperator.command.getAction());*/
-			
-			break;
-		/*case "login":
-			String name = service.login(this.init(request));
-			request.setAttribute("result", name);
-			if (!name.equals("")) {
-				this.directory = "global";
-				this.view = "main";
+		case "login":
+			System.out.println("=====로그인 진입=====");
+			bean.setId(request.getParameter("id"));
+			bean.setPw(request.getParameter("pw"));
+			String name = service.login(bean);
+			if (name.equals("")) {
+				Seperator.command.setPage("login");
+				Seperator.command.setView();
+			} else {
+				Seperator.command.setDirectory(request.getParameter("directory"));
+				request.setAttribute("abc", name);
 			}
-			break;*/
+			break;
 		case "regist":
-			MemberBean m2 = new MemberBean();
-			m2.setId(request.getParameter("id"));
-			m2.setPw(request.getParameter("pw"));
-			m2.setName(request.getParameter("name"));
-			m2.setSsn(request.getParameter("ssn"));
-			service.regist(m2);
-			
-				this.directory = "global";
-				this.view = "login";
+			System.out.println("===========case:regist===========");
+			bean.setId(request.getParameter("id"));
+			bean.setPw(request.getParameter("pw"));
+			bean.setName(request.getParameter("name"));
+			System.out.println(bean);
+			bean.setSsn(request.getParameter("ssn"));
+			bean.setRegDate();
+			System.out.println("두번째 빈"+bean);
+			service.regist(bean);
+			if (service.regist(bean)==1) {
+				Seperator.command.setPage("login");
+				Seperator.command.setView();
+			} else {
+				Seperator.command.setPage("home");
+			}
 			break;
 		default:
 			break;
 		}
+		DispatcherServlet.send(request, response, Seperator.command);
 	}
 		
-		/*try {
-			this.dispatch(request, response);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}*/
 	
-	public void dispatch(HttpServletRequest request, HttpServletResponse response,String page) throws Exception{
-		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/"+page+".jsp");
-		dis.forward(request, response);
-	}
 }

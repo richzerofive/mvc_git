@@ -25,24 +25,12 @@ public class MemberDAO {
 	public static MemberDAO getInstance() {
 		return instance;
 	}
-	public int insert(MemberBean mBean){
+	public int insert(MemberBean mem){
 		int result = 0;
-		String sql = "INSERT INTO MEMBER(ID,PW,NAME,REGDATE,SSN,EMAIL,PROFILE_IMG) VALUES(?,?,?,?,?,?,?)";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mBean.getId());
-			pstmt.setString(2, mBean.getPw());
-			pstmt.setString(3, mBean.getName());
-			pstmt.setString(4, mBean.getRegDate());
-			pstmt.setString(5, mBean.getSsn());
-			pstmt.setString(6, mBean.getEmail());
-			pstmt.setString(7, mBean.getProfileImg());
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return result;
+		String sql = "insert into member(id,pw,name,reg_date,ssn)"
+				+ "values('"+mem.getId()+"','"+mem.getPw()+"','"+mem.getName()
+				+"','"+mem.getRegDate()+"','"+mem.getSsn()+"')";
+		return exeUpdate(sql);
 	}
 	public int updatePw(MemberBean mBean){
 		int result = 0;

@@ -9,11 +9,12 @@
 </head>
 <body>
 <div class="box">
-	<form action="../member/login.do" method="post">
+	<form action="${context}/member.do" method="post">
 		<span class="meta">ID</span> <input type="text" name="id" /><br />
 		<span class="meta">비밀번호</span> <input type="password" name="pw" /><br />
 	<br /><br /><br />
-		<input type="hidden" name = "cmd" value = "login"/>
+		<input type="hidden" name = "action" value = "login"/>
+		<input type="hidden" name = "directory" value = "global"/>
 		<input type="submit" value="로그인" />
 		<input type="reset" value="취소" />
 	</form>

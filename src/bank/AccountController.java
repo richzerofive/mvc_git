@@ -9,23 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import global.Seperator;
 
-@WebServlet({"/account/main.do","/account/count.do","/account/list.do","/account/login.do","/account/logout.do","/account/regist.do","/account/retire.do","/account/search_id.do"})
+
+@WebServlet({"/account.do"})
 public class AccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String aPath = request.getServletPath();
-		String[] arr = aPath.split("/");
-		String pkg = arr[1];
-		String view = arr[2].substring(0, arr[2].indexOf("."));
-		RequestDispatcher dis =request.getRequestDispatcher("/WEB-INF/"+pkg+"/"+view+".jsp");
-		dis.forward(request, response);
-		
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("===account 컨트롤러 진입");
+		Seperator.init(request, response);
+		switch (Seperator.command.getAction()) {
+		case "move":break;
+		case "regist":break;
+		case "login":break;
+		default:
+			break;
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
-
 }
