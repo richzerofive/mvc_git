@@ -30,7 +30,8 @@ public class MemberDAO {
 		String sql = "insert into member(id,pw,name,reg_date,ssn)"
 				+ "values('"+mem.getId()+"','"+mem.getPw()+"','"+mem.getName()
 				+"','"+mem.getRegDate()+"','"+mem.getSsn()+"')";
-		return exeUpdate(sql);
+				
+		return 0;
 	}
 	public int updatePw(MemberBean mBean){
 		int result = 0;
