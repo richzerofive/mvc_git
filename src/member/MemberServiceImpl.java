@@ -9,6 +9,9 @@ import java.util.Set;
 
 import bank.AccountService;
 import bank.AccountServiceImpl;
+import subject.SubjectBean;
+import subject.SubjectDAO;
+import subject.SubjectMember;
 
 /**
  *@date   : 2016. 6. 20.
@@ -19,7 +22,9 @@ import bank.AccountServiceImpl;
 public class MemberServiceImpl implements MemberService{
 	private Map<String,MemberBean> map;
 	private MemberDAO dao;
+	private SubjectDAO subjDao =SubjectDAO.getInstance();
 	private MemberBean session;
+	
 	AccountService accService = AccountServiceImpl.getInstance();
 	
 	private static MemberServiceImpl instance = new MemberServiceImpl();
@@ -31,8 +36,10 @@ public class MemberServiceImpl implements MemberService{
 		return instance;
 	}
 	@Override
-	public String login(MemberBean mBean) {
+	public SubjectMember login(MemberBean mBean) {
 		String result = null;
+		SubjectMember sm = new SubjectMember();
+		SubjectBean sb = new SubjectBean();
 		if(mBean.getId()==null || mBean.getPw()==null){
 			return null;
 		}
@@ -41,8 +48,22 @@ public class MemberServiceImpl implements MemberService{
 			session = (MemberBean) map.get(mBean.getId());
 			result = session.getName();
 			accService.map();
+			sb= subjDao.findById(mBean.getId());
+			sm.setEmail(session.getEmail());
+			sm.setId(session.getId());
+			sm.setImg(session.getProfileImg());
+			sm.setMajor(sb.getMajor());
+			sm.setName(session.getName());
+			sm.setPhone(session.getPhone());
+			sm.setPhone(session.getPw());
+			sm.setReg(session.getRegDate());
+			sm.setSsn(session.getSsn());
+			sm.setSubjects(sb.getSubjects());
+		}else{
+			sm.setId("fail");
 		}
-		return result;
+		System.out.println("서비스로그인결과?"+session.getId());
+		return sm;
 	}
 	@Override
 	public Map<?, ?> map() {
@@ -51,29 +72,40 @@ public class MemberServiceImpl implements MemberService{
 		return map;
 	}
 	@Override
-	public int regist(MemberBean mBean) {
-		return dao.insert(mBean);
+	public String regist(MemberBean mem) {
+		String msg = "";
+		MemberBean temp = this.findById(mem.getId());
+		if (temp == null) {
+			System.out.println(mem.getId()+"가 존재하지 않음,가입 가능한 ID");
+			int result = dao.insert(mem);
+			if (result==1) {
+				msg = "success";
+			} else {
+				msg = "fail";
+			}
+		} else {
+			System.out.println(mem.getId()+"가 존재함,가입 불가능한 ID");
+			msg = "fail";
+		}
+		
+		return msg;
 	}
+
 	@Override
 	public int update(MemberBean mBean) {
 		int result= dao.updatePw(mBean);
 		if(result==1){
 			this.session = dao.findByPK(mBean.getId());
 			this.map.replace(session.getId(), session);
+		}else{
+			System.out.println("수정실패");
 		}
 		return result;
 	}
 	@Override
 	public int delete(MemberBean mBean) {
-		int result = 0;
-		MemberBean temp = (MemberBean) map.get(mBean.getId());
-		if(temp.getPw().equals(mBean.getPw())){
-			result = dao.deleteMember(mBean.getId());
-			if(result==1){
-				session = null;
-			}
-		}
-		return result;
+		
+		return dao.deleteMember(mBean);
 	}
 	@Override
 	public int count() {

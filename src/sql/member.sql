@@ -24,10 +24,12 @@ select count(*) as count from member; -- count
 -- UPDATE
 update member set email = id || '@test.com';
 update member set pw = '1' where id = 'lee3';
-alter table member add email varchar2(30);
+alter table member add phone varchar2(30);
 alter table member add profile_img varchar2(100);
-update member set reg_date = '2015-07-25' where id = 'lee3';
+update member set ssn = '811111-1' where id = 'te1';
 update member set profile_img = id||'.jpg' where profile_img IS NULL;
 -- DELETE
-delete from member where id = 'teqqw';
+delete from member where id = 'hong2';
+delete from member where id = 'lee5';
+delete from member where id = 'te1';
 

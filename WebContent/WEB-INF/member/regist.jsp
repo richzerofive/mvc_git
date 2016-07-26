@@ -12,8 +12,9 @@
 		<span class="meta">ID</span> <input type="text" name="id"/><br />
 		<span class="meta">비밀번호</span> <input type="text" name="pw" /><br />
 		<span class="meta">SSN</span><input type="text" name="ssn" /><br />
-		<input type="hidden" name = "action" value = "regist"/>
-		<input type="hidden" name = "directory" value = "global"/>
+		<span class="meta">EMAIL</span><input type="text" name="email" /><br />
+		<span class="meta">PHONE</span><input type="text" name="phone" /><br />
+		
 		<span class="meta">전공</span> <br /><br />
 		<input type="radio" name="major" value="computer" checked/> 컴공학부
 		<input type="radio" name="major" value="mgmt" /> 경영학부
@@ -27,7 +28,8 @@
 		<input type="checkbox" name="subject" value="delphi" /> 델파이
 		<input type="checkbox" name="subject" value="html" /> HTML
 		<br /><br /><br />
-		
+		<input type="hidden" name="action" value="regist" />
+		<input type="hidden" name="page" value="login" />
 		<input type="submit" value="회원가입" />
 		<input type="reset" value="취소" />
 	</form>

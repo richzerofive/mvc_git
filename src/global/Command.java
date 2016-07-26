@@ -3,7 +3,7 @@ package global;
 public class Command implements Orderable{
 
 	
-	private String directory,action,view,page;
+private String directory,action,view,page;
 	
 	public Command(String directory,String action,String page) {
 		this.directory = directory;
@@ -11,15 +11,12 @@ public class Command implements Orderable{
 		this.page = page;
 		this.setView();
 	}
-	public void setView(String page) {
-		this.view = "/WEB-INF/"+this.directory+"/"+this.page+".jsp";
-		
+	public Command(String directory,String action,
+			String page,String keyField,String keyword) {
 	}
-	public Command(String directory,String action,String page,String keyField,String keyword) {
-	}
-
 	@Override
 	public void execute() {
+		// TODO Auto-generated method stub
 		
 	}
 	public String getDirectory() {
@@ -40,10 +37,10 @@ public class Command implements Orderable{
 	public void setView() {
 		this.view = "/WEB-INF/"+this.directory+"/"+this.page+".jsp";
 	}
-	public final String getPage() {
+	public String getPage() {
 		return page;
 	}
-	public final void setPage(String page) {
+	public void setPage(String page) {
 		this.page = page;
 	}
 	

@@ -1,11 +1,18 @@
 package grade;
 
-public class GradeBean {
-	private String id,grade,seq,examDate, subject;
+import java.io.Serializable;
+
+public class GradeBean implements Serializable{
+	private static final long serialVersionUID=1L;
+	private String id,grade,seq,examDate, subject,major;
 	private int java,sql,html,javascript, score;
 	
-	
-	
+	public final String getMajor() {
+		return major;
+	}
+	public final void setMajor(String major) {
+		this.major = major;
+	}
 	public String getSubject() {
 		return subject;
 	}
