@@ -11,6 +11,7 @@ private String directory,action,view,page;
 		this.page = page;
 		this.setView();
 	}
+	
 	public Command(String directory,String action,
 			String page,String keyField,String keyword) {
 	}

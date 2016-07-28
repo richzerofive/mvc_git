@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="${css}/global.css" />
 	<link rel="stylesheet" href="${css}/member.css" />
 	<jsp:include page="../global/top.jsp" />
@@ -19,7 +20,7 @@
 				<input type="text" name = "keyword" placeholder="검색할 이름"/>
 				<input type="hidden" name = "action" value = "find_by_name"/>
 				<input type="hidden" name = "page" value = "list"/>
-				<input type="submit" value="ID검색}">
+				<input type="submit" value="이름검색}">
 				<input type="reset" value="취소}">
 				</form>
 		</div>

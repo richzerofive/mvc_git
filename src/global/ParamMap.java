@@ -11,6 +11,7 @@ public class ParamMap {
 			buff.append(values[i]+",");
 		}
 		 str = buff.toString().substring(0, buff.toString().length()-1);
+		 System.out.println("str:"+str);
 		 return str;
 		 		
 	 }

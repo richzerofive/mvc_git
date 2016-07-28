@@ -91,9 +91,11 @@ public class MemberBean implements Serializable{
 		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
 		String[] ssnArr = ssn.split("-");
 		String[] nowArr = now.split("-");
+		System.out.println("----"+ssnArr[0]);
 		int ssnBirth = (Integer.parseInt(ssnArr[0]));
 		int ssnGender = (Integer.parseInt(ssnArr[1]));
 		int thisYear = (Integer.parseInt(nowArr[0]));
+		int age=0;
 		this.ssn = ssn;
 		switch (ssnGender) {
 		case 1: case 5: 

@@ -65,11 +65,9 @@ public class MemberController extends HttpServlet {
 			bean.setName(request.getParameter("name"));
 			bean.setSsn(request.getParameter("ssn"));
 			bean.setRegDate();
-			bean.setGenderAndBirth(request.getParameter("ssn"));
 			bean.setPhone(request.getParameter("phone"));
 			bean.setEmail(request.getParameter("email"));
 			System.out.println("전공 :::"+request.getParameter("major"));
-			System.out.println("수강과목 :::"+ParamMap.getValues(request, "subject"));
 			System.out.println("======================="+bean+"==================");
 			if (service.regist(bean).equals("fail")) {
 				System.out.println("컨트롤러 : 회원가입 실패");
@@ -112,7 +110,6 @@ public class MemberController extends HttpServlet {
 			DispatcherServlet.send(request, response, Seperator.command);
 			break;
 		case "list":
-			service.list();
 			request.setAttribute("list", service.list());
 			DispatcherServlet.send(request, response, Seperator.command);
 			break;
@@ -126,6 +123,7 @@ public class MemberController extends HttpServlet {
 			DispatcherServlet.send(request, response, Seperator.command);
 			break;
 		case "count":
+			System.out.println("카운트 진입");
 			request.setAttribute("count", service.count());
 			Seperator.command.setPage("count");
 			Seperator.command.setView();

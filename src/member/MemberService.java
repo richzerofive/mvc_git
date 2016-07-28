@@ -4,6 +4,7 @@
 package member;
 
 import global.CommonService;
+
 import subject.SubjectMember;
 
 /**
@@ -14,10 +15,10 @@ import subject.SubjectMember;
 */
 public interface MemberService extends CommonService{
 	public String regist(MemberBean mBean);
-	public int update(MemberBean mBean);
-	public int delete(MemberBean mBean);
+	public void update(MemberBean mBean);
+	public void delete(MemberBean mBean);
 	public MemberBean findById(String id);
 	public SubjectMember login(MemberBean mBean);
-	public void logOut(MemberBean mBean);
+	public void logout(MemberBean member);
 	public MemberBean getSession();
 }
