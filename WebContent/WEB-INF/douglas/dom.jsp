@@ -4,7 +4,6 @@
 <jsp:include page="../global/header.jsp"/>
 <jsp:include page="../global/nav.jsp"/>
 <script src="${js}/douglas.js"></script>
-<link rel="stylesheet" href="${css}/douglas.css" />
 <div id="container">
 <section id="formbox">
 	<form name="form">

@@ -1,22 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<style>
-	div.memberClass{font-size: 20px}
-</style>
-<div id="" class="memberClass box">
-	
-	<h1>계좌관리</h1>
-	<div style="width: 300px;margin: 0 auto;text-align: left;">
-	<ol>
-		<li><a href="${context}/grade/regist.do">등록</a></li>
-		<li><a href="${context}/grade/update.do">수정</a></li>
-		<li><a href="${context}/grade/retire.do">삭제</a></li>
-		<li><a href="${context}/grade/list.do">목록 </a></li>
-		<li><a href="${context}/grade/count.do">카운트</a></li>
-		<li><a href="${context}/grade/search_id.do">검색</a></li>
-	</ol>
-	</div>
+	pageEncoding="UTF-8"%>
+<section id="grade_content">
+
+	<h1 id="title">성적관리</h1>
+	<article>
+		<ol>
+			<li><a href="${context}/grade/regist.do" id="a_regist">등록</a></li>
+			<li><a href="${context}/grade/update.do" id="a_update">수정</a></li>
+			<li><a href="${context}/grade/retire.do" id="a_delete">삭제</a></li>
+			<li><a href="${context}/grade/list.do" id="a_list">목록 </a></li>
+			<li><a href="${context}/grade/count.do" id="a_count">카운트</a></li>
+			<li><a href="${context}/grade/search_id.do" id="a_find">검색</a></li>
+		</ol>
+	</article>
 	<a href="../index.jsp">
-		<img src="../img/home.png" alt="home" style="width: 30px"/>
+		<img id = img_home src="${img}/home.jpg" alt="home"/>
 	</a>
-</div>
+</section>
+<script src = "${js}/resig.js"></script>
+<script type="text/javascript">
+	grade.init();
+</script>

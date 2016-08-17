@@ -4,7 +4,6 @@
 <jsp:include page="../global/header.jsp"/>
 <jsp:include page="../global/nav.jsp"/>
 
-<link rel="stylesheet" href="${css}/douglas.css" />
 <div id="container">
 <section>
 	<button id="bt_bom">BOM(Browser Object Model)</button><br />
